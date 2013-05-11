@@ -103,18 +103,55 @@ function CommCtrl($scope, $http, $location) {
 	}
 }
 
-function RecordCtrl($scope, $http, $location) {
-	$scope.init = function(ecoregion, commcat, record) {
+function SpeciesCtrl($scope, $http, $location) {
+	$scope.init = function(ecoregion, commcat, community) {
 		$scope.ecoregion = ecoregion;
 		$scope.commcat = commcat;
-		$scope.record = record
+		$scope.community = community;
+		$scope.getData()
+		$scope.getOne()
+	}
+	$scope.getData = function() {
+		$http({
+			method: 'GET',
+			url: '/api/ecoregion/' + $scope.ecoregion + '/communitycategory/' + $scope.commcat + '/community/' + $scope.community
+		}).
+		success(function(data, status, headers, config) {
+			//console.log(data)
+			$scope.data = data.data;
+		}).
+		error(function(data, status, headers, config) {
+			$scope.name = 'Error!'
+		});
+	}
+	$scope.getOne = function() {
+		$http({
+			method: 'GET',
+			url: '/api/getone/' + $scope.ecoregion + '/' + $scope.commcat + '/' + $scope.community
+		}).
+		success(function(data, status, headers, config) {
+			//console.log(data)
+			$scope.comm = data.data;
+		}).
+		error(function(data, status, headers, config) {
+			$scope.name = 'Error!'
+		});
+	}
+}
+
+function RecordCtrl($scope, $http, $location) {
+	$scope.init = function(ecoregion, commcat, community, record) {
+		$scope.ecoregion = ecoregion;
+		$scope.commcat = commcat;
+		$scope.comm = community;
+		$scope.record = record;
 		$scope.getData()
 	}
 
 	$scope.getData = function() {
 		$http({
 			method: 'GET',
-			url: '/api/ecoregion/' + $scope.ecoregion + '/communitycategory/' + $scope.commcat + '/community/' + $scope.record
+			url: '/api/ecoregion/' + $scope.ecoregion + '/communitycategory/' + $scope.commcat + '/community/' + $scope.comm + '/record/' + $scope.record
 		}).
 		success(function(data, status, headers, config) {
 			//console.log(data)

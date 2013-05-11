@@ -32,16 +32,19 @@ app.configure('production', function(){
 app.get('/api/ecoregion', api.ecoregion)
 app.get('/api/getone/:ecoregion', api.getone)
 app.get('/api/getone/:ecoregion/:communitycategory', api.getone)
+app.get('/api/getone/:ecoregion/:communitycategory/:community', api.getone)
 app.get('/api/ecoregion/:ecoregion/communitycategory', api.communitycategory)
 app.get('/api/ecoregion/:ecoregion/communitycategory/:communitycategory', api.communityname)
-app.get('/api/ecoregion/:ecoregion/communitycategory/:communitycategory/community/:record', api.record)
+app.get('/api/ecoregion/:ecoregion/communitycategory/:communitycategory/community/:community', api.species)
+app.get('/api/ecoregion/:ecoregion/communitycategory/:communitycategory/community/:community/record/:record', api.record)
 
 
 // Routes
 app.get('/', routes.index);
 app.get('/:ecoregion', routes.communitycategory)
 app.get('/:ecoregion/:category', routes.community )
-app.get('/:ecoregion/:category/:record', routes.record )
+app.get('/:ecoregion/:category/:community', routes.species)
+app.get('/:ecoregion/:category/:community/:record', routes.record )
 
 
 

@@ -30,9 +30,27 @@ exports.communitycategory = function(req, res) {
 exports.communityname = function(req, res) {
 	var ecoregion = req.params['ecoregion']
 	var communitycategory = req.params['communitycategory']
-	db.Plant.find({
+	db.Plant.distinct('community', {
 		'ecoregion.slug': ecoregion,
 		'communitycategory.slug': communitycategory
+
+	}).exec(function(err, result) {
+		res.type('application/json');
+		res.jsonp({
+			data: result
+		})
+	})
+}
+
+exports.species = function(req, res) {
+	var ecoregion = req.params['ecoregion']
+	var communitycategory = req.params['communitycategory']
+	var community = req.params['community']
+	console.log(community)
+	db.Plant.find({
+		'ecoregion.slug': ecoregion,
+		'communitycategory.slug': communitycategory,
+		'community.slug': community
 
 	}).exec(function(err, result) {
 		res.type('application/json');
@@ -45,10 +63,12 @@ exports.communityname = function(req, res) {
 exports.record = function(req, res) {
 	var ecoregion = req.params['ecoregion']
 	var communitycategory = req.params['communitycategory']
+	var community = req.params['community']
 	var record = req.params['record']
 	db.Plant.find({
 		'ecoregion.slug': ecoregion,
 		'communitycategory.slug': communitycategory,
+		'community.slug':community,
 		'name.slug': record
 	}).exec(function(err, result) {
 		res.type('application/json');
@@ -61,6 +81,8 @@ exports.record = function(req, res) {
 exports.getone = function(req, res) {
 	var ecoregion = req.params['ecoregion']
 	var communitycategory = req.params['communitycategory']
+	var community = req.params['community']
+
 	if (communitycategory == undefined) {
 		db.Plant.findOne({
 			'ecoregion.slug': ecoregion
@@ -71,16 +93,28 @@ exports.getone = function(req, res) {
 			})
 		})
 	} else {
-		db.Plant.findOne({
-			'ecoregion.slug': ecoregion,
-			'communitycategory.slug': communitycategory
-		}).exec(function(err, result) {
-			res.type('application/json');
-			res.jsonp({
-				data: result
+		if (community == undefined) {
+			db.Plant.findOne({
+				'ecoregion.slug': ecoregion,
+				'communitycategory.slug': communitycategory
+			}).exec(function(err, result) {
+				res.type('application/json');
+				res.jsonp({
+					data: result
+				})
 			})
-		})
-
+		} else {
+			db.Plant.findOne({
+				'ecoregion.slug': ecoregion,
+				'communitycategory.slug': communitycategory,
+				'community.slug': community
+			}).exec(function(err, result) {
+				res.type('application/json');
+				res.jsonp({
+					data: result
+				})
+			})
+		}
 	}
 
 }

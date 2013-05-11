@@ -19,10 +19,19 @@ exports.community = function(req, res) {
 	});
 };
 
+exports.species = function(req, res) {
+	res.render('species', {
+		ecoregion:req.params['ecoregion'],
+		category:req.params['category'],
+		community:req.params['community']
+	});
+};
+
 exports.record = function(req, res) {
 	res.render('record', {
 		ecoregion:req.params['ecoregion'],
 		category:req.params['category'],
+		community:req.params['community'],
 		record:req.params['record']
 	});
 };

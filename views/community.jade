@@ -5,8 +5,8 @@ block body
 		h2 
 			a(href='{{eco.ecoregion.slug}}'){{eco.ecoregion.name}} Ecoregion
 		h3 {{comm.communitycategory.name}}
-		h4 Species
+		h4 Communities
 		ul.unstyled
-			li(ng-repeat="category in data") 
-				a(href="#{ecoregion}/#{category}/{{category.name.slug}}") {{category.name.name}}
+			li(ng-repeat="community in data") 
+				a(href="#{ecoregion}/#{category}/{{community.slug}}") {{community.name}}
 		p(ng-show="data.length == 0") No results found
