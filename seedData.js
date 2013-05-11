@@ -74,7 +74,7 @@ var count = 0;
 
 //console.log(moment('12/01/2010').format())
 
-csv().from.stream(fs.createReadStream(__dirname + '/seeddata.csv')).to.path(__dirname + '/sample.out').transform(function(row) {
+csv().from.stream(fs.createReadStream(__dirname + '/seeddata.csv')).to.path(__dirname + '/seeddataout.csv').transform(function(row) {
 
 	//console.log(row[0])
 	return row;
