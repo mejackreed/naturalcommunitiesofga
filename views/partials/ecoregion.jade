@@ -1,0 +1,5 @@
+div(ng-controller='EcoregionCtrl', ng-cloak)
+		h3 Ecoregions
+		ul.unstyled
+			li(ng-repeat="ecoregion in data")
+				a(href='{{ecoregion.slug}}'){{ecoregion.name}}

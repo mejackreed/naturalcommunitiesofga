@@ -1,0 +1,30 @@
+!!!
+html(ng-app="myApp")
+	head
+		meta(charset='utf8')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+		base(href='/')
+		title Natural Communities of Georgia
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')		
+		link(rel='stylesheet', href='/css/app.css')
+
+	body(ng-controller='AppCtrl')
+		div.container-fluid
+			h1 Natural Communities of Georgia
+			p.lead A resource for researchers, educators, and students
+		div.container-fluid(ng-cloak)
+			block body
+		div#footer.container-fluid
+			small.muted Built by <a href='http://geospatial.gsu.edu'>Georgia State University - Geospatial Laboratories
+
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+		script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js')
+		script(src='js/lib/angular/angular.min.js')
+		script(src='js/lib/angular/angular-resource.min.js')
+		script(src='js/lib/angular/angular-sanitize.min.js')
+		script(src='js/app.js')
+		script(src='js/services.js')
+		script(src='js/controllers.js')
+		script(src='js/filters.js')
+		script(src='js/directives.js')

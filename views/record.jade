@@ -1,0 +1,12 @@
+extends layout
+
+block body
+	div(ng-controller='RecordCtrl', ng-init='init("#{ecoregion}", "#{category}", "#{record}")').container-fluid
+		h2 {{data.name.name}}
+		p Ecoregion: {{data.ecoregion.name}}
+		p {{data.lifeform.name}} - {{data.lifeformtype.name}}
+		p <strong>Common Name:</strong> {{data.commonname}}
+		p <strong>Scientific Name:</strong> <em>{{data.scientificname}}</em>
+		p 
+			a(href='http://www.discoverlife.org/20/q?search={{data.link}}', target='_blank') More information on Discover Life
+		p <strong>Color:</strong> {{data.color}}

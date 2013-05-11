@@ -1,0 +1,13 @@
+extends layout
+
+block body
+	div.row-fluid
+		div(ng-controller='CommCatCtrl', ng-init='init("#{ecoregion}")', ng-cloak).span8
+			h2 {{eco.ecoregion.name}} Ecoregion
+			h3 Community Categories
+			ul.unstyled
+				li(ng-repeat="category in data") 
+					a(href='#{ecoregion}/{{category.slug}}') {{category.name}}
+			p(ng-show="data.length == 0") No results found
+		div.span4
+			include partials/ecoregion

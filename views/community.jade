@@ -1,0 +1,12 @@
+extends layout
+
+block body
+	div(ng-controller='CommCtrl', ng-init='init("#{ecoregion}", "#{category}")', ng-cloak)
+		h2 
+			a(href='{{eco.ecoregion.slug}}'){{eco.ecoregion.name}} Ecoregion
+		h3 {{comm.communitycategory.name}}
+		h4 Species
+		ul.unstyled
+			li(ng-repeat="category in data") 
+				a(href="#{ecoregion}/#{category}/{{category.name.slug}}") {{category.name.name}}
+		p(ng-show="data.length == 0") No results found

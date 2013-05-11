@@ -1,0 +1,13 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background: url('../images/natural_paper.png')
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+#footer{
+	bottom:0px;
+	/*padding:20px;*/
+	padding-top: 200px;
+}
