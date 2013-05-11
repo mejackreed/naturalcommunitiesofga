@@ -46,7 +46,6 @@ exports.species = function(req, res) {
 	var ecoregion = req.params['ecoregion']
 	var communitycategory = req.params['communitycategory']
 	var community = req.params['community']
-	console.log(community)
 	db.Plant.find({
 		'ecoregion.slug': ecoregion,
 		'communitycategory.slug': communitycategory,
@@ -82,7 +81,6 @@ exports.getone = function(req, res) {
 	var ecoregion = req.params['ecoregion']
 	var communitycategory = req.params['communitycategory']
 	var community = req.params['community']
-
 	if (communitycategory == undefined) {
 		db.Plant.findOne({
 			'ecoregion.slug': ecoregion
