@@ -2,6 +2,9 @@ extends layout
 
 block body
 	div(ng-controller='RecordCtrl', ng-init='init("#{ecoregion}", "#{category}", "#{record}")').container-fluid
+		h2 
+			a(href='{{data.ecoregion.slug}}'){{data.ecoregion.name}} Ecoregion
+		h3 {{data.communitycategory.name}}
 		h2 {{data.name.name}}
 		p Ecoregion: {{data.ecoregion.name}}
 		p {{data.lifeform.name}} - {{data.lifeformtype.name}}
