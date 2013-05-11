@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "naturalcommunitiesofga",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -10,8 +10,6 @@
     "express": "3.0.6",
     "jade": ">= 0.0.1",
     "mongoose": "~3.6.7",
-    "knox": "~0.7.0",
-    "multiparty": "~2.1.5",
     "underscore": "~1.4.4",
     "csv": "~0.3.0",
     "slug": "~0.2.2"
