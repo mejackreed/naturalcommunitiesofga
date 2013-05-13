@@ -117,9 +117,20 @@ function SpeciesCtrl($scope, $http, $location) {
 			url: '/api/ecoregion/' + $scope.ecoregion + '/communitycategory/' + $scope.commcat + '/community/' + $scope.community
 		}).
 		success(function(data, status, headers, config) {
-			//console.log(data)
-			$scope.data = data.data;
+			$scope.data = data.data;			
+			var lifeform = function(val) {
+				return val.lifeform.name
+			}
+			var lifeformtype = function(val) {
+				return val.lifeformtype.name
+			}
+			$scope.lifeforms = _.map(_.uniq($scope.data, lifeform), lifeform)
+			$scope.lifeform = $scope.lifeforms[0]
+			$scope.lifeformtypes = _.map(_.uniq($scope.data, lifeformtype), lifeformtype)
+			$scope.lifeformtype = $scope.lifeformtypes[0]
 		}).
+
+
 		error(function(data, status, headers, config) {
 			$scope.name = 'Error!'
 		});
@@ -132,6 +143,7 @@ function SpeciesCtrl($scope, $http, $location) {
 		success(function(data, status, headers, config) {
 			//console.log(data)
 			$scope.comm = data.data;
+
 		}).
 		error(function(data, status, headers, config) {
 			$scope.name = 'Error!'
@@ -162,7 +174,6 @@ function RecordCtrl($scope, $http, $location) {
 		});
 	}
 }
-
 
 
 

@@ -6,7 +6,17 @@ block body
 			a(href='{{eco.ecoregion.slug}}'){{eco.ecoregion.name}} Ecoregion
 		h3 {{comm.communitycategory.name}} ->  {{comm.community.name}}
 		h4 Species
+		table.table
+			tr
+				th Select a lifeform
+				th
+			tr
+				td
+					select(ng-model="lifeform", ng-options="l for l in lifeforms")
+				td
+					select(ng-model="lifeformtype", ng-options="l for l in lifeformtypes")
+
 		ul.unstyled
-			li(ng-repeat="species in data") 
+			li(ng-repeat="species in data | filter:lifeformtype | filter:lifeform" ) 
 				a(href="#{ecoregion}/#{category}/#{community}/{{species.name.slug}}") {{species.name.name}}
 		p(ng-show="data.length == 0") No results found
