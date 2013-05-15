@@ -14,6 +14,20 @@ var db = mongoose.connect(uristring, mongoOptions, function(err, res) {
 var Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
 
+var descSchema = new Schema({
+	ecoregion: {
+		type: String,
+	},
+	communitycategory: {
+		type: String,
+	},
+	community: {
+		type: String
+	},
+	description: {
+		type: String,
+	}
+})
 
 var plantSchema = new Schema({
 	name: {
@@ -59,5 +73,7 @@ var plantSchema = new Schema({
 		type: Boolean,
 	},
 })
+
+exports.Description = mongoose.model('descriptions', descSchema);
 
 exports.Plant = mongoose.model('plants', plantSchema);

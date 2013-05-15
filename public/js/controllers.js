@@ -103,7 +103,7 @@ function CommCtrl($scope, $http, $location) {
 	}
 }
 
-function SpeciesCtrl($scope, $http, $location) {
+function SpeciesCtrl($scope, $http, $location, Description) {
 	$scope.init = function(ecoregion, commcat, community) {
 		$scope.ecoregion = ecoregion;
 		$scope.commcat = commcat;
@@ -117,7 +117,14 @@ function SpeciesCtrl($scope, $http, $location) {
 			url: '/api/ecoregion/' + $scope.ecoregion + '/communitycategory/' + $scope.commcat + '/community/' + $scope.community
 		}).
 		success(function(data, status, headers, config) {
-			$scope.data = data.data;			
+
+			$scope.data = data.data;
+			$scope.desc = Description.get({
+				ecoregion: $scope.data[0].ecoregion.name,
+				commcat: $scope.data[0].communitycategory.name,
+				comm: $scope.data[0].community.name
+			})
+
 			var lifeform = function(val) {
 				return val.lifeform.name
 			}
@@ -129,8 +136,6 @@ function SpeciesCtrl($scope, $http, $location) {
 			$scope.lifeformtypes = _.map(_.uniq($scope.data, lifeformtype), lifeformtype)
 			$scope.lifeformtype = $scope.lifeformtypes[0]
 		}).
-
-
 		error(function(data, status, headers, config) {
 			$scope.name = 'Error!'
 		});
@@ -160,6 +165,7 @@ function RecordCtrl($scope, $http, $location) {
 		$scope.getData()
 	}
 
+
 	$scope.getData = function() {
 		$http({
 			method: 'GET',
@@ -168,6 +174,7 @@ function RecordCtrl($scope, $http, $location) {
 		success(function(data, status, headers, config) {
 			//console.log(data)
 			$scope.data = data.data[0];
+
 		}).
 		error(function(data, status, headers, config) {
 			$scope.name = 'Error!'

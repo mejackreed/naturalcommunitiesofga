@@ -30,6 +30,10 @@ app.configure('production', function(){
 
 // JSON API
 app.get('/api/ecoregion', api.ecoregion)
+app.get('/api/desc', api.description)
+app.get('/api/desc/:ecoregion/:commcat', api.description)
+app.get('/api/desc/:ecoregion/:commcat/:comm', api.description)
+app.get('/api/desc/:ecoregion/:commcat/:comm/:species', api.description)
 app.get('/api/getone/:ecoregion', api.getone)
 app.get('/api/getone/:ecoregion/:communitycategory', api.getone)
 app.get('/api/getone/:ecoregion/:communitycategory/:community', api.getone)

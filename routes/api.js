@@ -67,7 +67,7 @@ exports.record = function(req, res) {
 	db.Plant.find({
 		'ecoregion.slug': ecoregion,
 		'communitycategory.slug': communitycategory,
-		'community.slug':community,
+		'community.slug': community,
 		'name.slug': record
 	}).exec(function(err, result) {
 		res.type('application/json');
@@ -114,5 +114,19 @@ exports.getone = function(req, res) {
 			})
 		}
 	}
+}
 
+exports.description = function(req, res) {
+	db.Description.find({
+		ecoregion:req.query['ecoregion'],
+		communitycategory:req.query['commcat'],
+		community:req.query['comm'],
+		species:req.query['species']
+	}).exec(function(err, result) {
+		res.type('application/json');
+		res.jsonp({
+			data: result
+		})
+
+	})
 }
